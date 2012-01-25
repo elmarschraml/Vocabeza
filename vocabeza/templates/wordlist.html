@@ -1,0 +1,33 @@
+<html>
+  <head>
+    <link type="text/css" rel="stylesheet" href="/css/main.css" />
+  </head>
+  <body>
+  
+  	<table>
+		<tr>
+			<td>Deutsch</td>
+			<td>Spanisch</td>
+			<td>Kommentar</td>
+		</tr>
+    {% for word in words %}
+	<tr>
+		<td>{{ word.de }}</td>
+		<td>{{ word.es }}</td>
+      {% if word.comment %}
+        <td>{{ word.comment }}</td>
+      {% endif %}
+      
+	</tr>  
+    {% endfor %}
+	</table>
+
+    <form action="/sign" method="post">
+      <div><textarea name="content" rows="3" cols="60"></textarea></div>
+      <div><input type="submit" value="Sign Guestbook"></div>
+    </form>
+
+    <a href="{{ url }}">{{ url_linktext }}</a>
+
+  </body>
+</html>
