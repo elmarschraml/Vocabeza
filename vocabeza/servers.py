@@ -1,7 +1,7 @@
 
 
 from google.appengine.ext import db
-import simplejson as jsonlib
+import json
 import webapp2
 from webapp2_extras import jinja2
 
@@ -30,7 +30,7 @@ class WordResource(webapp2.RequestHandler):
   def post(self, location):
     # Do something for location
     my_response = {'id':'abcd1234', 'version':1, 'de':'antrag', 'es':'pedido'}
-    json = jsonlib.dumps(my_response)
+    json = json.dumps(my_response)
     self.response.headers.add_header('content-type', 'application/json', charset='utf-8')
     self.response.out.write(json)
 
