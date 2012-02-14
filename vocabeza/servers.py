@@ -31,16 +31,6 @@ class AllwordsResource(webapp2.RequestHandler):
   def render_template(self, filename, **template_args):
     self.response.write(self.jinja2.render_template(filename, **template_args))
 
-
-  def post(self, location):
-    #experimental, not used in API
-    #de_val = self.request.params.get('de')
-    #logging.info("get request value for de: " + str(de_val))
-    all_params = self.request.POST
-    logging.info("all request params: " + str(all_params.items()))
-    reqbod = self.request.body
-    logging.info("request body: " + str(reqbod))
-
   def get(self,location):
     q = WordModel.all()
     q.order("de")
@@ -85,12 +75,17 @@ class  WordResource(webapp2.RequestHandler):
       #get id from url
       #delete word
       #send confirmation json
+      
+class WelcomeResource(webapp2.RequestHandler):
+    def get(self,location):
+      self.redirect("/html/welcome.html")    
    
 	
 	
 
 app = webapp2.WSGIApplication([
     ('/allwords(.*)', AllwordsResource),
-    ('/word(.*)', WordResource)
+    ('/word(.*)', WordResource),
+    ('/(.*)', WelcomeResource)
 ])
 
