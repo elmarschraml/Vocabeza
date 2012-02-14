@@ -42,7 +42,10 @@ class AllwordsResource(webapp2.RequestHandler):
     logging.info("request body: " + str(reqbod))
 
   def get(self,location):
-    self.render_template('wordlist.html', url_linktext="supi supi linki")
+    q = WordModel.all()
+    q.order("de")
+    wordlist = q.fetch(100)
+    self.render_template('wordlist.html', url_linktext="supi supi linki", words=wordlist)
 
   def put(self,location):
     logging.info("read request" + self.request.body)

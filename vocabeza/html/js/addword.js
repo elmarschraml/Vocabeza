@@ -14,9 +14,9 @@
 				var jsonToSend = JSON.stringify(curword);
 				
 				$.ajax({
-					url : '../',
+					url : '../allwords',
 					async : true, 
-					type : "POST",
+					type : "PUT",
 					cache : false,
 					data : jsonToSend,
 					contentType : "application/json; charset=utf-8",

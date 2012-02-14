@@ -1,12 +1,11 @@
 ===== TODO =====
 
-PUT /allwords: read content
-                 get sequence number
-               how to handle date/datetime with to_dict (jsonencoder-overwrite below not working?)
-GET /allwords: try with multiple words
+PUT /allwords: how to handle date/datetime with to_dict (jsonencoder-overwrite below not working?)
+GET /allwords: if word.property -> erscheint als obj, nicht string, warum?
 
 ==== Gelernt ======
 json.loads(self.request.body) -> dict    -> dict["de"]
+q.fetch(50)   limit ist verpflichtend
 
 
 
@@ -20,4 +19,6 @@ class JSONEncoder(json.JSONEncoder):
         
         
         
- #created = db.DateProperty(auto_now_add=True)        
+ #created = db.DateProperty(auto_now_add=True)   
+
+      {% if word.comment %} 
