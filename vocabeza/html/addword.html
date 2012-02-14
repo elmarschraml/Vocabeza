@@ -7,13 +7,18 @@
 	<body>
 		<h1>Vocabeza</h1>
 		<div id="main">
-			German: <input type="text" name="de"/><br/>
-			Spanish:<input type="text" name="es"/><br/>
-			Comment: <input type="text" name="comment"/><br/>
-			<input type="button" value="Add Word"/>
+			German: <input type="text" id="defield" name="de"/><br/>
+			Spanish:<input type="text" id="esfield" name="es"/><br/>
+			Comment: <input type="text"id="commentfield" name="comment"/><br/>
+			<input type="button" id="addwordbutton" value="Add Word"/>
 		</div>		
 
+		<div id="messages">
+		
+		</div>
 
 		<script type="text/javascript" src=" https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js"></script>
+		<script type="text/javascript" src="js/lib/json2.js"></script>
+		<script type="text/javascript" src="js/addword.js"></script>
 	</body>
 </html>

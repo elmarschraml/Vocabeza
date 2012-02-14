@@ -3,11 +3,12 @@
 from google.appengine.ext import db
 import json
 import webapp2
+import logging
 from webapp2_extras import jinja2
 
 
 class WordModel(db.Model):
-    id = db.StringProperty(required=True)
+    #keine id, stattdessen datastore key
     version = db.IntegerProperty(required=True)
     de = db.StringProperty(required=True)
     es = db.StringProperty(required=True)
@@ -15,9 +16,13 @@ class WordModel(db.Model):
     quiz_nr = db.IntegerProperty
     quiz_ok = db.IntegerProperty
     quiz_last = db.DateProperty
+   
 
 
-class WordResource(webapp2.RequestHandler):
+
+        
+        
+class AllwordsResource(webapp2.RequestHandler):
 
   @webapp2.cached_property
   def jinja2(self):
@@ -28,24 +33,61 @@ class WordResource(webapp2.RequestHandler):
 
 
   def post(self, location):
-    # Do something for location
-    my_response = {'id':'abcd1234', 'version':1, 'de':'antrag', 'es':'pedido'}
-    json = json.dumps(my_response)
-    self.response.headers.add_header('content-type', 'application/json', charset='utf-8')
-    self.response.out.write(json)
+    #experimental, not used in API
+    #de_val = self.request.params.get('de')
+    #logging.info("get request value for de: " + str(de_val))
+    all_params = self.request.POST
+    logging.info("all request params: " + str(all_params.items()))
+    reqbod = self.request.body
+    logging.info("request body: " + str(reqbod))
 
   def get(self,location):
-        self.render_template('wordlist.html', url_linktext="supi supi linki")
+    self.render_template('wordlist.html', url_linktext="supi supi linki")
 
   def put(self,location):
-        self.response.out.write('doin da put')
+    logging.info("read request" + self.request.body)
+    from_request = json.loads(self.request.body)
+    logging.info("from_request: " + str(from_request))
+    new_word = WordModel(id='1', version=1, de='bla', es='bla')
+    logging.info("new_word raw: " + str(new_word))
+    new_word.de = from_request["de"]
+    new_word.es = from_request["es"]
+    new_word.comment = from_request["comment"]
+    logging.info("new_word with data: " + str(new_word))
+    new_word.put()
+    logging.info("was put in db")
+    word_dict = db.to_dict(new_word)
+    jsontext = json.dumps(word_dict)
+    logging.info("was serialized")
+    self.response.headers.add_header('content-type', 'application/json', charset='utf-8')
+    self.response.out.write(jsontext)
+		
 
-  def delete(self,location):
-        self.response.out.write('doin da delete')
+    
+class  WordResource(webapp2.RequestHandler):
+    @webapp2.cached_property
+    def jinja2(self):
+        return jinja2.get_jinja2(app=self.app)
+
+    def get(self,location):
+      logging.info("word get is not yet implemented")
+      #TODO implement
+      #get id from url
+      #get word for id from db
+      #render template
+      
+    def delete(self,location):
+      logging.info("word get is not yet implemented")
+      #TODO implement
+      #get id from url
+      #delete word
+      #send confirmation json
+   
 	
 	
 
 app = webapp2.WSGIApplication([
-    ('/(.*)', WordResource),
+    ('/allwords(.*)', AllwordsResource),
+    ('/word(.*)', WordResource)
 ])
 

@@ -10,11 +10,8 @@ handlers:
   static_dir: html
 
 - url: /favicon\.ico
-  static_files: images/favicon.ico
-  upload: images/favicon\.ico
-
-- url: /css
-  static_dir: css
+  static_files: html/images/favicon.ico
+  upload: html/images/favicon\.ico
 
 - url: /.*
   script: servers.app 

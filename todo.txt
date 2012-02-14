@@ -1,0 +1,23 @@
+===== TODO =====
+
+PUT /allwords: read content
+                 get sequence number
+               how to handle date/datetime with to_dict (jsonencoder-overwrite below not working?)
+GET /allwords: try with multiple words
+
+==== Gelernt ======
+json.loads(self.request.body) -> dict    -> dict["de"]
+
+
+
+
+class JSONEncoder(json.JSONEncoder):
+    def default(self, obj):
+      if hasattr(obj, 'isoformat'): #handles both date and datetime objects
+        return obj.isoformat()
+      else:
+        return json.JSONEncoder.default(self, obj)
+        
+        
+        
+ #created = db.DateProperty(auto_now_add=True)        
