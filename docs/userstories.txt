@@ -1,0 +1,59 @@
+Features
+
+00) Setup
+- projectsetup backend
+- basisseite frontend
+
+10) Liste aller Wörter anzeigen
+- backend
+- frontend
+
+20) Neues Wort eingeben
+- backend 
+- frontend
+  
+============= TODO ================
+  
+05) Einzelnes Wort anzeigen     
+- holen und anzeigen in frontend
+- Initialdaten definieren, einladen
+- echte implementierung
+
+
+30) Wort löschen
+- backend
+- frontend
+40) Wörter editieren
+- backend
+- frontend
+50) Abfrage  Wortliste ob richtig
+- backend random
+- fronend anzeige 
+60) Store train result
+- frontend store
+- backend store
+
+
+70) Test basic urgency
+80) Wörter in Kapitel unterteilen
+90) alle Wörter eines Kapitels in Serie abfragen
+100) beim training jedes Wort wederholen bis 2x richtigx
+110) Besserer Algorithmus für welche wörter fällig sind
+120) check if word already exists when adding 
+130) Eingabe Sonderzeichen für Polnisch über feste Funktionstasten 
+
+
+140) Accounts (Zuordnung nur meine Wörter)
+150) Statistiken wie viel trainiert / Entwicklung Schwierigkeit / Grösse Wortschatz
+160) Freie Belegung der Funktionstasten mit Zeichen
+170) Replikation offline/server  handle update conflicts
+180) Multi-lanugage
+190) Behandlung Synonyme/Artikel/Tippfehler etc
+200) csv-import
+210) csv-export
+220) iphone-version
+230) android-version
+
+
+ 
+

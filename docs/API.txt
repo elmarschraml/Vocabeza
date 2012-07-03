@@ -1,0 +1,24 @@
+Resources:
+
+
+/allwords                 alle woerter
+/chapters/id           woerter eines kapitels
+/users/id/chapters/id  spaeter mit user
+/quiz                 abfragen
+
+
+
+-- GET /allwords          get all words
+-- PUT /allwords          add new word
+
+GET /words/id       get all data about a word
+POST /words/id      update word
+DELETE /words/id    delete word
+
+GET /quiz      fetch next word to quiz
+PUT /quiz      save the result of a quiz
+
+
+
+
+

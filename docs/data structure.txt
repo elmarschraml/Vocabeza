@@ -1,0 +1,39 @@
+simple:
+
+word = {
+        id: "asdf34",
+	    version: 1,
+        de: "antrag",
+        en: "pedido",
+        comment: "Bitte, nicht Heiratsantrag",
+        quiz_nr: 5,
+        quiz_ok: 2,
+        quiz_last: "2009-10-23"
+}
+
+
+later extension, for replication:
+
+word = {
+        id : "asdfd34",
+        _rev : "3_e335",
+        version: 2,
+        nativelang: "de",
+        word: "antrag",
+        languages : [
+                {
+                        lang: "en",
+                        vocab: "application"
+                        tests: [
+                                                        {
+                                                                date: "2009-08-01",
+                                                                result: "OK"
+                                                        },
+                                                        {
+                                                                date: "2009-09-12",
+                                                                result: "fail"
+                                                        }
+                                                ]
+                }
+        ]
+}

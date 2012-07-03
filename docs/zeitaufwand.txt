@@ -1,0 +1,24 @@
+früher:
+5h Couch buch lernen
+1h Couch installieren, ausprobieren
+2h Feature Brainstorming, User stories
+1h Datenstruktur
+4h Couch buch nochmal, couchapp 
+
+5h probieren zu programmieren
+2h plan/datenstruktur auf appengine
+
+Oktober 2011:
+6. 1h couch runterladen, setup
+7. 2h initialdaten schreiben, in bulkdocs laden, iriscouch anmelden, replizieren
+   1h installationsprobleme couchapp auf mac wegen alter version, probleme mit erstem reduce
+   1h simple PoC - views anlegen, erste show
+?  5h weiter
+   
+Januar 2012
+24. 2h setup backend auf appengine, helloworld, deployed auf appspot
+25. 2h templates, python27, webapp2, staticdirs
+26. 2h favicon, libfehler, jq-rest-skript, parameterauslesen
+
+Februar 2012
+14. 3h put word, get words

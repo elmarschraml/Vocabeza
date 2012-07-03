@@ -1,0 +1,17 @@
+
+
+1) DB: google datastore
+2) Appserver: google appengine python
+3) framework: REST simple auf webapp
+4) client framework: jquery
+5) version control: git
+
+maybe later
+- coffeescript
+- angular/ember/backbone
+
+
+
+
+Doku"wiki" and "bugtracker" in textfiles under /doku
+Code in Dropbox and github

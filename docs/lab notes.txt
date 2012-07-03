@@ -1,0 +1,82 @@
+deployed auf vocabeza.appspot.com
+
+
+iriscouch als "github" zur replikation:
+http://elmar:t1olPomH!@vocabeza.iriscouch.com/vocabeza
+
+bulk docs braucht genaues format, header Content-Type:application/json
+curl braucht alle Optionen, auch -d 'json', vor der URL
+zum einfuegen vorher in textmate Text/Unwrap um Zeilenumbrueche zu entfernen
+curl -X POST -H "Content-Type:application/json" -d '{ "docs": [ { "de": "Beispiel", "es": "elejemplo", "version": 1 } ] }' http://localhost:5984/vocabeza/_bulk_docs 
+
+mit couchapp 0.8 generierte verson laesst sich mit der alten version 0.6 nicht mehr pushen
+alte version entfernen: /Library/Python/2.5/site-packages/Couch... entfernen
+pip install couchapp läuft nicht unter python 2.7 (mac-default), scheint 2.5 zu wollen
+macosx packagd installer: danach startet immer noch die alte version -> auch /usr/local/bin/couchapp loeschen, nochmal installieren
+jetzt beschwert sich, dass in /usr/local/bin nicht gefunden, which couchapp zeigt aber neue vesion in /usr/bin/couchapp 
+-> symlink von /usr/local/bin/couchapp auf /usr/bin/couchapp angelegt
+
+nur map-funktion, ohne reduce, ist OK - aber nur solange kein anderer view angelegt ist, der eine reduce-funktion hat, sonst kommt error "reduce must more rapidly"
+leere reduce.js datei bringt aber "missing function"
+-> ist NICHT die schuld von couchapp. anscheinend scheitern alle views, wenn einer nicht berechnet werden kann (hatte output-fehler im reduce)
+
+architekturfrage:
+1) show/list functions
+oder
+2) html in attachments, und daraus jquery.getJSON()
+
+/updates can transform arbitrary hhtp requests into document updates ?!?
+
+Alternativen zu couchapp:
+soca: sammy on couch app
+kansojs.org
+
+show-funktion anlegen mit couchapp generate show myshow
+oder in /shows/myshow.js
+
+jquery couch plugin: http://bradley-holt.com/2011/07/couchdb-jquery-plugin-reference/
+http://daleharvey.github.com/jquery.couch.js-docs/symbols/%24.couch.html
+
+return random document:
+- document contains a random number 
+- view returns this random number as key (muss schon im doc sein, beim aufruf live erzeugen mit Math.random geht nicht)
+- to get a a random doc, create random number, and use as url param startkey:
+   /db/_design/myapp/_view/random_docs?limit=1&startkey=0.4521&endkey=1.0
+- set new random number in gotten doc (because search is random, but NOT uniform (random numbers will not be evenly spaced))   
+
+view querys:
+- built-in view "all"
+- reduce=false -> nur map-funktion des views benutzen
+- key
+- startkey
+- endkey
+- limit
+
+bulk update (z.B. zu allen docs ein neues feld hinzufügen): muss man client-seitig iterieren?!?
+-> view der _id und _rev liefert, in textmate zu bulk-docs format umstriken, inkl neuem Feld
+{
+  "docs": [
+    {"_id": "0", "_rev": "1-62657917", "_deleted": true},
+    {"_id": "1", "_rev": "1-2089673485", "integer": 2 },
+    {"_id": "2", "_rev": "1-2063452834", "integer": 3, "string": "3"}
+  ]
+}
+Problem: packt nur statische Werte, z.B. kein Math.random()
+-> ruby-skript
+
+document update handlers:
+ /<database>/_design/<design>/_update/<function>/<docid>
+in function: 
+"bump-counter" : "function(doc, req) {
+      if (!doc.counter) doc.counter = 0;
+      doc.counter += 1;
+      var message = '<h1>bumped it!</h1>';
+      return [doc, message];
+    }",
+//geht momentan nur mit docid, d.h. on one document at a time
+ruby-script:
+//get view of all ids
+//iterate over ids
+    //call update function
+    
+
