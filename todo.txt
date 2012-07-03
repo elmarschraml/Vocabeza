@@ -7,6 +7,18 @@ GET /allwords: if word.property -> erscheint als obj, nicht string, warum?
 json.loads(self.request.body) -> dict    -> dict["de"]
 q.fetch(50)   limit ist verpflichtend
 
+wenn port 22 geblockt:
+~/.ssh/config   
+Host github.com
+User elmar.schraml@gmail.com
+Port 443
+Hostname ssh.github.com
+
+wenn kein key gefunden:
+testen: ssh -vT git@github.com
+exec ssh-agent bash
+ssh-add /path/to/key
+
 
 
 
