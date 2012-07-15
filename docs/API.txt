@@ -20,5 +20,11 @@ PUT /quiz      save the result of a quiz
 
 
 
+Pages:
+
+GET /page/allwords    word list, as rendered template
+
+
+
 
 

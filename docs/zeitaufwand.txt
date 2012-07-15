@@ -22,3 +22,8 @@ Januar 2012
 
 Februar 2012
 14. 3h put word, get words
+
+Juli 2012
+11.  1h kuler-colorscheme, subtlepatterns-backgrounds
+12.  1h Seitendefinitionen/Wireframes
+13.  0.5h MIT-Lizenz ausgesucht, LICENSE-file

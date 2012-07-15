@@ -1,3 +1,6 @@
+
+
+
 Features
 
 00) Setup
@@ -11,10 +14,32 @@ Features
 20) Neues Wort eingeben
 - backend 
 - frontend
+
+21) Seiten designen
+- wort eingeben
+- Startseite
+- Abfrage
+- wortliste anzeigen, mit edit-link, dann editierbar und speichern-button, und mit lösch-button
   
 ============= TODO ================
+
+
+
+22) Seiten HTML/CSS
+- Basis-Bootstrap-Seite anlegen (richtige hmtl-strukur, css rein, jquery verlinken)
+- Farben im CSS anpassen
+- Startseite mit Links
+- Eingabeseite
+- Listen-Seite
+- Abfrage-seite
+
+23) Dummy-Implementierung der API
+   keine datenbank, nur array, und funktionen mocken, nur controller dafür
+
+24) API echt implementieren
+mit db
   
-05) Einzelnes Wort anzeigen     
+05) Einzelnes Wort zur abfrage holen   
 - holen und anzeigen in frontend
 - Initialdaten definieren, einladen
 - echte implementierung
@@ -33,6 +58,9 @@ Features
 - frontend store
 - backend store
 
+=======================
+Release 1.0
+=======================
 
 70) Test basic urgency
 80) Wörter in Kapitel unterteilen
@@ -46,11 +74,12 @@ Features
 140) Accounts (Zuordnung nur meine Wörter)
 150) Statistiken wie viel trainiert / Entwicklung Schwierigkeit / Grösse Wortschatz
 160) Freie Belegung der Funktionstasten mit Zeichen
-170) Replikation offline/server  handle update conflicts
-180) Multi-lanugage
+180) Multi-lanugage vokabular
+185) Internationalisierung der GUI
 190) Behandlung Synonyme/Artikel/Tippfehler etc
 200) csv-import
 210) csv-export
+215) Offline-Version
 220) iphone-version
 230) android-version
 

@@ -2,7 +2,7 @@ appengine python auf mac:
 
 if uses 2.5/2.6: 
 install 2.7
-
+sudo find / -name python2.7
 select 2.7 installation
 enter in appengine launcher preferences, hit return(!)
 
