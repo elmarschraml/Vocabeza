@@ -16,3 +16,11 @@ pip geht per default auch aufs system-python, also das 2.5er
 -> brew install python --framework
 scheitert aber wegen md5 mismatch des distribute.tarballs, keine ahnung wieso
 
+rest-client-extension fuer chrome, analog poster fuer firefox: postman
+
+json serilization of db models:
+- einfaches model: json.dumps(db.to_dict(mymodel))
+- listen von modeln: liste geht nicht to_dict, ohne to_dict inhalt nicht serializable??
+-> zur model-klasse selber die methode to_dict hinzufügen,
+um aus einer liste davon json zu manchen:
+json.dumps([p.to_dict() for p in photos])

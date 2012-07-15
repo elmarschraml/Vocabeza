@@ -12,7 +12,8 @@ class AllwordsResource(webapp2.RequestHandler):
     q = model_word.WordModel.all()
     q.order("de")
     wordlist = q.fetch(100)
-    jsontext = json.dumps(wordlist)
+
+    jsontext = json.dumps([w.to_dict() for w in wordlist])
     self.response.headers.add_header('content-type', 'application/json', charset='utf-8')
     self.response.out.write(jsontext)
 

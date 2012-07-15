@@ -9,3 +9,6 @@ class WordModel(db.Model):
     quiz_nr = db.IntegerProperty
     quiz_ok = db.IntegerProperty
     quiz_last = db.DateProperty
+
+    def to_dict(self):
+	       return dict([(p, unicode(getattr(self, p))) for p in self.properties()])

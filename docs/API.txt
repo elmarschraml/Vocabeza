@@ -8,11 +8,11 @@ Resources:
 
 
 
--- GET /allwords          get all words
--- PUT /allwords          add new word
+GET /allwords          get all words
+PUT /allwords          add new word
 
-GET /words/id       get all data about a word
-POST /words/id      update word
+GET /word/id       get all data about a word
+POST /word/id      update word
 DELETE /words/id    delete word
 
 GET /quiz      fetch next word to quiz
