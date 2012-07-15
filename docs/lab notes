@@ -1,0 +1,18 @@
+appengine python auf mac:
+
+if uses 2.5/2.6: 
+install 2.7
+
+select 2.7 installation
+enter in appengine launcher preferences, hit return(!)
+
+vs error "pil not found / imaging not available":
+pip install pil
+
+vs error with pip/easy_install: compilefehler, no assembler for architecture ppc:
+sudo env ARCHFLAGS="-arch i386" easy_install whatever
+
+pip geht per default auch aufs system-python, also das 2.5er
+-> brew install python --framework
+scheitert aber wegen md5 mismatch des distribute.tarballs, keine ahnung wieso
+

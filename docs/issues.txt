@@ -1,0 +1,67 @@
+===== TODO =====
+
+PUT /allwords: how to handle date/datetime with to_dict (jsonencoder-overwrite below not working?)
+GET /allwords: if word.property -> erscheint als obj, nicht string, warum?
+
+==== Gelernt ======
+json.loads(self.request.body) -> dict    -> dict["de"]
+q.fetch(50)   limit ist verpflichtend
+
+wenn port 22 geblockt:
+~/.ssh/config   
+Host github.com
+User elmar.schraml@gmail.com
+Port 443
+Hostname ssh.github.com
+
+wenn kein key gefunden:
+testen: ssh -vT git@github.com
+exec ssh-agent bash
+ssh-add /path/to/key
+
+
+
+
+class JSONEncoder(json.JSONEncoder):
+    def default(self, obj):
+      if hasattr(obj, 'isoformat'): #handles both date and datetime objects
+        return obj.isoformat()
+      else:
+        return json.JSONEncoder.default(self, obj)
+        
+        
+        
+ #created = db.DateProperty(auto_now_add=True)   
+
+      {% if word.comment %} 
+
+
+single-column:
+<div class="row"><br>  
+<div class="span12"><br>  
+inline elements like span, block level elements like p, div.<br>  
+</div>  
+
+two column:
+<div class="row"><br>  
+<div class="span6"><br>  
+inline elements like span, block level elements like p, div.<br>  
+</div><br>  
+<div class="span6"><br>  
+inline elements like span, block level elements like p, div.<br>  
+</div> 
+
+bootstrap navigation:
+<div class="navbar navbar-fixed-top"> 
+  <div class="navbar-inner"> 
+    <div class="container"> 
+      <div class="nav-collapse"> 
+        <ul class="nav"> 
+          <li><a href="/">Home</a></li> 
+          <li><a href="/parties/">All Parties</a></li> 
+          <li><a href="/about/">About</a></li> 
+        </ul> 
+     </div> 
+   </div> 
+  </div> 
+</div> 
