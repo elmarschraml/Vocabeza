@@ -71,7 +71,7 @@ Release 1.0
 130) Eingabe Sonderzeichen für Polnisch über feste Funktionstasten 
 
 
-140) Accounts (Zuordnung nur meine Wörter)
+140) Accounts (Zuordnung nur meine Wörter) -> use google accounts
 150) Statistiken wie viel trainiert / Entwicklung Schwierigkeit / Grösse Wortschatz
 160) Freie Belegung der Funktionstasten mit Zeichen
 180) Multi-lanugage vokabular

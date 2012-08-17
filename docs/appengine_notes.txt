@@ -1,0 +1,16 @@
+no state or session, no access to the server's filesystem (except read contents of app dir)
+30 second max request to response time, ideal < 1 sec
+
+db indexes are automatically created for the queries used by the app
+db update of a single entity occurs in a transaction
+entity group: entities that will be updated together in the same transaction (need to tell the db so it can keep them on the same server)
+db-operations are locking, and writing can fail due to optimistic concurrency
+
+Services:
+- memcache: in-memory, non-persistant key-value store
+- url fetch: remote http calls, can be asayc, but have to be withing the 30 sec req/res time
+- mail: can also receive mail to a http handler
+- xmpp
+- image processing: e.g. scaling thumbnails
+- task queues: req handler creates task, may include payload, queue calls other req handler, task handler also has to finish in 30 second
+- scheduled tasks: cronjobs

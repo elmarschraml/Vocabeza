@@ -23,4 +23,7 @@ json serilization of db models:
 - listen von modeln: liste geht nicht to_dict, ohne to_dict inhalt nicht serializable??
 -> zur model-klasse selber die methode to_dict hinzufügen,
 um aus einer liste davon json zu manchen:
-json.dumps([p.to_dict() for p in photos])
+json.dumps([p.to_dict() for p in photos
+
+comment = db.StringProperty(required=False)
+wenn das required nicht gesetzt ist, wird der Wert in der Template nicht richtig gerenderts, sondern <class StringProperty> ausgegeben

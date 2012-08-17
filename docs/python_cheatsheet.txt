@@ -1,0 +1,15 @@
+if somevalue == 17:
+  do_stuff()
+else:
+  bla()
+
+try:
+  do_stuff()
+except ValueError:
+  oh_shit()
+
+
+
+if len(some_input_string) == 0:
+
+#single line comment
