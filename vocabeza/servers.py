@@ -19,6 +19,12 @@ import pages
 class WelcomeResource(webapp2.RequestHandler):
     def get(self,location):
       self.redirect("/html/welcome.html")    
+    
+    def main():
+      run_wsgi_app(application)
+
+    if __name__ == '__main__':
+      main()
    
 	
 	
@@ -30,4 +36,5 @@ app = webapp2.WSGIApplication([
     ('/page(.*)', pages.PageController),
     ('/(.*)', WelcomeResource)
 ])
+
 

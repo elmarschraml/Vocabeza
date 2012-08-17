@@ -25,3 +25,9 @@ class PageController(webapp2.RequestHandler):
 
    #only supports get to return rendered jinja templates
    #updates/changes are done by ajax request to the api
+
+  def main():
+    run_wsgi_app(application)
+
+  if __name__ == '__main__':
+    main()   

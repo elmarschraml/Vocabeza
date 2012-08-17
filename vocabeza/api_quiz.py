@@ -18,3 +18,8 @@ class QuizResource(webapp2.RequestHandler):
       #TODO implement
 
   #TODO implement log and error message when another (unsupported) operation is called
+  def main():
+      run_wsgi_app(application)
+
+  if __name__ == '__main__':
+      main()

@@ -55,3 +55,8 @@ class AllwordsResource(webapp2.RequestHandler):
  
 
   #TODO implement log and error message when another (unsupported) operation is called
+  def main():
+    run_wsgi_app(application)
+
+  if __name__ == '__main__':
+      main()

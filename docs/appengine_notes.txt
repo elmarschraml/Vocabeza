@@ -7,10 +7,38 @@ entity group: entities that will be updated together in the same transaction (ne
 db-operations are locking, and writing can fail due to optimistic concurrency
 
 Services:
-- memcache: in-memory, non-persistant key-value store
+- memcache: in-memory, non-persistant key-value store, for any type that can be serialized with pickle
 - url fetch: remote http calls, can be asayc, but have to be withing the 30 sec req/res time
 - mail: can also receive mail to a http handler
 - xmpp
 - image processing: e.g. scaling thumbnails
 - task queues: req handler creates task, may include payload, queue calls other req handler, task handler also has to finish in 30 second
 - scheduled tasks: cronjobs
+(no streaming, no long-running jobs at all)
+
+datastore:
+primary key is unique accross all entities, cannot be changed. user-settable part: key name. if you know the key name, you can fetch by key, is faster. 
+key = db.Key.from_path('UserPrefs', user_id)
+userprefs = db.get(key)
+
+login:
+login: required  zur url in app.yaml 
+login: admin   make url accessible only to app admins
+
+memcache:
+in model: override put() with 
+memcache.set(self.key().name(), self, namespace=self.key().kind())
+b.Model.put(self)
+when reading from datastore:
+userprefs = memcache.get(user_id, namespace='UserPrefs')
+if not userprefs:
+  key = db.Key.from_path('UserPrefs', user_id)
+  userprefs = db.get(key)
+
+
+local development console: 
+http://localhost:8080/_ah/admin
+view datastore and memcache entries, queues,...
+
+python:
+no c-based libraries
