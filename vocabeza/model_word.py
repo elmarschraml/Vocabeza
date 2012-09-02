@@ -2,6 +2,7 @@ from google.appengine.ext import db
 
 class WordModel(db.Model):
     #keine id, stattdessen datastore key
+    wordid = db.StringProperty(required=True)
     version = db.IntegerProperty(required=True)
     de = db.StringProperty(required=True)
     es = db.StringProperty(required=True)

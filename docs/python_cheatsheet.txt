@@ -13,3 +13,6 @@ except ValueError:
 if len(some_input_string) == 0:
 
 #single line comment
+
+
+"///foo".lstrip('/') -> "foo"

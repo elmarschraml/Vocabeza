@@ -27,15 +27,16 @@ class AllwordsResource(webapp2.RequestHandler):
       self.response.status = 415
       self.response.status_message = self.word_wrong_input_message
     elif requestbody == "ping":
-      new_word = model_word.WordModel(id='123', version=1, de='bla', es='bla')
+      new_word = model_word.WordModel(wordid='123', version=1, de='bla', es='bla')
       new_word.put()
       self.response.status = 200
     else:   
         try:
           from_request = json.loads(self.request.body)
           logging.info("from_request: " + str(from_request))
-          new_word = model_word.WordModel(id='123', version=1, de='bla', es='bla')
+          new_word = model_word.WordModel(wordid='123', version=1, de='bla', es='bla')
           logging.info("new_word raw: " + str(new_word))
+          new_word.wordid = from_request["wordid"]
           new_word.de = from_request["de"]
           new_word.es = from_request["es"]
           if "comment" in from_request:
