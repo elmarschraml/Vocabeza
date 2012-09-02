@@ -10,6 +10,11 @@ class  WordResource(webapp2.RequestHandler):
 
     def get(self,location):
       logging.info("word get is not yet implemented")
+      new_word = model_word.WordModel(id='123', version=1, de='mock', es='el mockito')
+      word_dict = db.to_dict(new_word)
+      jsontext = json.dumps(word_dict)
+      self.response.headers.add_header('content-type', 'application/json', charset='utf-8')
+      self.response.out.write(jsontext)
       #TODO implement
       #get id from url
       #get word for id from db
