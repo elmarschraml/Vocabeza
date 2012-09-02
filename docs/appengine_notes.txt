@@ -1,3 +1,5 @@
+182 pdfpage 204/392
+
 no state or session, no access to the server's filesystem (except read contents of app dir)
 30 second max request to response time, ideal < 1 sec
 
@@ -42,3 +44,87 @@ view datastore and memcache entries, queues,...
 
 python:
 no c-based libraries
+
+loggin:
+level is always debug, unchangeable (but filter in console)
+local server is set to info, cli flag --debug on startup to set to debug
+
+datastore:
+key contains application, kind and key name
+entity id can be supplied by the app (-> called key name -> supplied as param key_name to constructor of instance) or auto-generated (-> called id), can not be changed after creation
+a single property can have multiple values, even of different types (python list)
+expando model supertype: class Book(db.Expando):  -> can assign any value to any property, has no declared properties
+properties with name beginning with underscore will not be saved in db, __doubleunderscores__ is reserved
+property types: String is < 500 bytes, Text is not indexed -> not searchable
+key is type db.Key. get a key: someInstance.key() (but if auto-assigned key name, key is not complete before saving!!). get key without having the object for it: db.Key.from_path('InstanceType', 'keynameOrId')
+db.get takes a list of keys -> faster than several calls with one key each
+returns None if not found
+no update in place possible, have to get the entity, change, and send everything to put
+check if exists before saving? -> do inside transaction!
+kinds of entries: property-based query can only return entries of one kind, primary use of kinds is to restrict what kind of entries can possibly match a query
+query always returns full entity, no way to query for a subset. large entity -> split in 2 entities for often and rarely needed data
+GQL: only select *, select __key__, where only <property> <comparison operator> <simple value>. also IN. also LIMIT, OFFSET
+kind and property names are case-sensitive!!
+build a query: q = db.Query(Word)   or     q = Word.all()   //not executed yet
+               q.filter("level >",5).sort("-level")
+build a gql query: q = db.GqlQuery("SELECT * FROM Player WHERE level > :min_level AND level < :max_level", min_level=5, max_level=20)
+q.fetch(10)   offsets are supported, but slow and limited to 1000 -> not good for pagination
+q.get()  -> returns first result, or None of no results
+q.count()  must perform query, and is also limited to 1000 results
+q = db.Query(Player, keys_only=True)
+for result_key in q:    #result_key is of type Key
+
+indexes
+stores result of queries with same filter and order. very fast regardless of result size, updated on every write, cf couchdb views
+index.yaml tells appengine which query indexes to prepare, dev server auto-adds indexes for queries performed, queries not supported by an index will fail in production
+custom indexes needed for: multiple sorts, inequality filter + other filters
+
+multi-valued properties
+in python: list (python list does not have a corresponding datastore type)
+order is maintained, entries can repeat, any datastore type, mixed types. not: nested
+a multivalued property matches an equality filter if ANY value matches	
+assigning an empty list is not possible (since property only exists if has a value)
+filter for equality + sort order -> sort order is ignored! (since doesnt make sense for non-mvp properties)
+
+transactions
+a transaction may only affect entities of one entity group (default: each entity is a separate group)
+no locks!! concurrent updates -> slower update gets cancelled!! -> exception, can retry
+only read-only transactions cant fail due to concurrency
+some things wont work, e.g. storing the number of page hits in a single entity -> would need to be concurrently update by every request
+create entity groups: associate new entity with existing entity's key("ancestor") at creation time
+msg1 = Message(parent=board, key_name='first!')  #parent takes entity variable or Key
+db.Key.from_path  needs complete ancestor path if entity has an ancestor
+entity group can contain entities of different kinds
+ancestor does not have to exist, and can be deleted without affecting children
+query can filter by "only those with <key> as (any) ancestor"
+no need to declare entity group in transaction - but need to declare ancestor filter in every query
+someEntitiy.parent()   .parent_key()
+run a transaction: write a function that does everything that needs to happen inside the transaction, then 
+try:
+  db.run_in_transaction(my_func, param1=value1,....
+needs to be idempotent, cause auto-retried 3 times if fails due to concurrency
+
+data modelling:
+schema is not enforced by datastore, only by modelling library
+db.Model ignores undeclared properties when saving, db.Expando includes them
+in documentation-speak: static properties = declared properties. dynamic properties = undeclared properties on a subclass of db.Expando
+attributes beginning with _ are always ignored for save -> transient temp stuff
+attribute properties: 
+- required (validated as present and not null - but datastroe distinguishes between not set and set to null)
+- default
+- name(of datastore attribute, if should be different from python class attribute, e.g. use datastore reserved name as attribute name)
+- choices (restrict to a set of values, e.g. an array of allowed strings)
+- validator : function that takes a val, and raises a BadValueError
+- indexed=False : datastroe index treats them as unset
+- auto_now: date/time automatically set to current time whenever entity is saved (i.e. updated)
+- auto_now_add: only when first saved (i.e. created)
+
+
+
+
+
+
+
+
+
+
