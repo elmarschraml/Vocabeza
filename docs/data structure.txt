@@ -10,29 +10,21 @@ word = {"wordid": "asdf34",
         "quiz_last": "2009-10-23"
 }
 
-
-later extension, for replication:
-
-word = {
-        id : "asdfd34",
-        _rev : "3_e335",
-        version: 2,
-        nativelang: "de",
-        word: "antrag",
-        languages : [
-                {
-                        lang: "en",
-                        vocab: "application"
-                        tests: [
-                                                        {
-                                                                date: "2009-08-01",
-                                                                result: "OK"
-                                                        },
-                                                        {
-                                                                date: "2009-09-12",
-                                                                result: "fail"
-                                                        }
-                                                ]
-                }
-        ]
+error = {
+    "code": "notfound",
+    "message": "word with id 145 does not exist"
 }
+
+
+quiz = {
+    "wordid":"asdf34",
+    "version": 1,
+    "successful": false
+}
+
+
+
+errorcodes:
+notfound
+badinput
+internal

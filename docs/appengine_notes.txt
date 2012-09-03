@@ -1,4 +1,4 @@
-182 pdfpage 204/392
+190 pdfpage 212/392
 
 no state or session, no access to the server's filesystem (except read contents of app dir)
 30 second max request to response time, ideal < 1 sec
@@ -118,6 +118,14 @@ attribute properties:
 - indexed=False : datastroe index treats them as unset
 - auto_now: date/time automatically set to current time whenever entity is saved (i.e. updated)
 - auto_now_add: only when first saved (i.e. created)
+ListProperty: ensures every entry of the same type (can take empty list, unlike multi-value property on expando)
+relationships: in BookReview: db.ReferenceProperty(Book, collection_name = reviews)   #stores key, can assign key or entity directly
+can access nested property: some_book_review.book.title #will be fetched lazily
+for inheritance, have root class inherit from PolyModel, then polymorphic queries will work
+db.Property can also be subclassed
+
+
+
 
 
 

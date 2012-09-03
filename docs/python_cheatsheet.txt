@@ -16,3 +16,8 @@ if len(some_input_string) == 0:
 
 
 "///foo".lstrip('/') -> "foo"
+"123".isdigit()  -> True
+
+elif not(some_boolean):
+
+new_instance = SomeClass(someinitparam=somevalue)

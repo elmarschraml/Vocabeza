@@ -34,4 +34,9 @@ Juli 2012
 16.  2h    kommentare mit abspeichern, fehlerhandling, str fuer word ueberschrieben
 
 August 2012
-17.    /allwords PUT: Fix ignore comment if not given,
+17.  1h  /allwords PUT: Fix ignore comment if not given,
+30.  2h   appengine-buch lesen
+
+September 2012
+02.  2h   /word GET basic impl, some small fixes/changes -> PUT /allwords and GET /word/somewordid work now
+03.       word_id wieder abschaffen zugunsten interner numerischer id (war nur falsche query). validation/error handling in GET /word

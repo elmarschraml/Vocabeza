@@ -1,4 +1,13 @@
+done:
+buch python data modelling noch fertig lesen
 
+TODOs:
+/word GET meldung wenn nicht gefunden
+/word GET statt nach id auch nach url param mit de/es property
+/word DELETE
+/word POST
+/quiz PUT (single result)
+GET /quiz?wordid=asdf34
 
 
 Features
