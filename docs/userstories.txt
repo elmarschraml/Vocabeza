@@ -1,16 +1,21 @@
 done:
 buch python data modelling noch fertig lesen
-
-TODOs:
 /word GET meldung wenn nicht gefunden
 /word GET statt nach id auch nach url param mit de/es property
 /word DELETE
+
+TODOs:
 /word POST
-/quiz PUT (single result)
-GET /quiz?wordid=asdf34
+/quiz PUT (save a single result)  #for offline use: check locally, store-only batch call later
+/quiz/<id> GET (check an answer)       #for online use: have logic server-side
+/quiz GET   get next question to ask
+GET /quiz?count=10   batch-get next questions
+/quiz POST (combination of POST(check) and PUT(store))
+
+improvements:
+refactor /word and /allwords into a single resource (allwords put works equally well as word put, allwords get can be handled by word get without id or search param)
 
 
-Features
 
 00) Setup
 - projectsetup backend

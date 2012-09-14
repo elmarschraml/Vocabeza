@@ -39,4 +39,5 @@ August 2012
 
 September 2012
 02.  2h   /word GET basic impl, some small fixes/changes -> PUT /allwords and GET /word/somewordid work now
-03.       word_id wieder abschaffen zugunsten interner numerischer id (war nur falsche query). validation/error handling in GET /word
+03.  1h   word_id wieder abschaffen zugunsten interner numerischer id (war nur falsche query). validation/error handling in GET /word
+

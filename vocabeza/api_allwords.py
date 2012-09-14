@@ -10,10 +10,11 @@ class AllwordsResource(webapp2.RequestHandler):
 
   word_wrong_input_message = "To PUT a new word, you need to supply a json body, e.g. {'de':'Beispiel','es':'ejemplo'}"     
 
+  #does not actually get all, capped at 1000 (datastore limitation. IMPROV: workaround to really get all. but better handled by bulk export etc)
   def get(self,location):
     q = model_word.WordModel.all()
     q.order("de")
-    wordlist = q.fetch(100)
+    wordlist = q.fetch(1000)
 
     jsontext = json.dumps([w.to_dict() for w in wordlist])
     self.response.headers.add_header('content-type', 'application/json', charset='utf-8')

@@ -21,3 +21,9 @@ if len(some_input_string) == 0:
 elif not(some_boolean):
 
 new_instance = SomeClass(someinitparam=somevalue)
+
+for value in list:
+  do_stuff()
+
+
+if elem in list:
