@@ -3,3 +3,41 @@ This is a small playground project, intended to eventually grow into a flashcard
 Technology-wise, I'm aiming to teach myself python and appengine by diving in and getting something running, and to explore various single-page app javascript frameworks. So this is definitely not clean code or good architecture.
 
 current status: API mocked and partially implemented. no frontend yet.
+
+
+Goals:
+The best training app is one that actually gets used.
+Vocabeza therefore aims to be
+- easy to use, so you can worry about what you are learning, not about learning how to use the app
+- efficient, so you see fast results
+- non-annoying, or as fun as a study aid can be
+- motivating, by showing your progress. Non of that achievements gamification nonsense, though.
+- portable, so you can use it anywhere.
+- pretty
+
+Planned features:
+- Flashcard training according to the Leitner system (5 buckets, depending on how often you remembered correctly) (similar to vtrain)
+- Keeping track of difficulty (only correct/failed tests (maybe using levenstein distance to correct answer?) - letting the user rank the difficulty every time, as supermemo does it, would be too much work for the user)
+- Sorting cards in each bucket by "urgency", determined by difficulty and time since last test
+- For the first bucket, keeping a buffer of a small number of cards that get repeated until learnt (similar to provoc)
+- Automatically preventing duplicate entries
+- Easy entry of non-ascii characters
+- Caching for working offline
+
+Non-features:
+- Vocabulary, not general knowledge - vocabeza should be useless for anything but language vocabulary. Will definitely not support differnt card types etc.
+- No configuration whatsoever for nr of buckets, buffer size, difficulty settings etc
+- No support for non-latin or right-to-left alphabets. Maybe later, but not before the rest of the app is truly polished.
+- Not more than one button to enter an answer, not more than one keypress (except for typing) per word
+- Not more than one statistic/graph: tests for time period
+- No images, sounds, long texts or custom fields per card. No text formatting, plaintext only.
+- No more than one level of organization per language. Some kind of bucket per chapter etc is probably needed, but definitely no nested tree structure.
+- No security, except protection against accidental damage or non-serious vandalism
+
+Glossary:
+Word: a single flashcard
+Quiz: a single test whether you know a word or not
+Box: a collection of words
+Bucket: a collection of words in the same state of learning
+
+

@@ -1,0 +1,69 @@
+page 155/191 of 494
+
+module: any file containing python functions ending in .py
+CPAN for python: PyPI
+jar file for python: distribution, needs a file setup.py using distutils.core.setup to set metadata -> setup.py sdist; setup.py install
+modulename is namespace
+import some_module  -> use function defined there as some_module.some_function()
+from some_module import some_function   -> import to __main__ namespace, use just as some_function()  #no guards against name conflicts
+where to import from? either in the path (where? import sys; sys.path) or installed from distribution
+
+for num in range(4):   #supplies numbers 0,1,2,3 (up to, but not including, the argument)
+
+def print_lol(the_list, level=0):   #by supplying a default value, level becomes an optional argument
+
+""" multi-
+ line 
+    comment"""
+
+("a","tuple") #effectively a constant list
+
+try:
+	stuff()
+except:   #catches all exceptions, 
+except ValueError: #only catch one type of exception
+except ValueError as err:   #assign to variable to read info from exception  
+	pass
+finally:
+	somefile.close()
+
+is a variable called 'foo' defined in the current scope?
+if 'foo' in locals()
+
+
+try with resource:
+try:
+	with open("file.txt",'w') as data:
+		do_stuff(data)
+#no need to worry about closing the file, interpreter will take care of it equal to a finally-clause
+
+pickle.dump(some_obj, some_file)
+some_obj = pickle.load(some_file)
+
+data.sort() #in place
+data2 = data.sorted() #sorted copy
+
+
+
+List comprehensions aka map:
+Newlist = [ dostuff(curentry) for curentry in oldlist]
+
+Remove duplicates from list:
+Fooset = set(foolist)
+
+classes:
+class MyClass:
+class MyClass(Superclass):
+def __init__(self, someparam=[],otherparam=defaultvalue): #constructor
+  Superclass.__init__(someparam)  #cf super()
+somefoo = Myclass()  #no new needed
+self is first parameter of any class method!!
+#multiple inhertance is supported
+@property  #makes method below callable as property
+
+
+====================================================
+werkzeug: wsgi util lib, basis of flask  -> excellent debugger facility
+flask-login   popular session mgt lib
+blueprint: project template for larger flask apps
+on appengine: https://github.com/kamalgill/flask-appengine-template

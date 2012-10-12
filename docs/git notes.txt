@@ -1,0 +1,2 @@
+revert:
+git checkout -- <file>
