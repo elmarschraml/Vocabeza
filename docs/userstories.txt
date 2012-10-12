@@ -5,12 +5,12 @@ buch python data modelling noch fertig lesen
 /word DELETE
 
 TODOs:
-/word POST
-/quiz PUT (save a single result)  #for offline use: check locally, store-only batch call later
+/word POST   save changes to word, update difficulty and lastquiz
+/quiz PUT (save a single result)  #for offline use: check locally, store-only batch call later. must be idempotent -> check if already exists with same timestamp
 /quiz/<id> GET (check an answer)       #for online use: have logic server-side
 /quiz GET   get next question to ask
 GET /quiz?count=10   batch-get next questions
-/quiz POST (combination of POST(check) and PUT(store))
+/quiz POST (combination of GET(check) and PUT(store))
 
 improvements:
 refactor /word and /allwords into a single resource (allwords put works equally well as word put, allwords get can be handled by word get without id or search param)

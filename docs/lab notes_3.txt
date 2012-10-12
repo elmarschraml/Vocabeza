@@ -27,3 +27,8 @@ json.dumps([p.to_dict() for p in photos
 
 comment = db.StringProperty(required=False)
 wenn das required nicht gesetzt ist, wird der Wert in der Template nicht richtig gerenderts, sondern <class StringProperty> ausgegeben
+
+bei installation von neuer version des launchers Pfad auf C:\progtools\appengine umsetzen (sonst findet er zwar die alte config, startet aber nicht)
+
+db.DateTimeProperty: ist in python datetime.datetime  (DateProperty ist datetime.date)
+-> im code from datetime import date, newvalue = datetime.date(year=1986, month=3, day=5)

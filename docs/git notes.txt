@@ -1,2 +1,7 @@
 revert:
 git checkout -- <file>
+for entire repo: git checkout -- .
+for everything below working dir: git checkout HEAD
+
+push to github:
+use cygwin; dosbox does not recognize key

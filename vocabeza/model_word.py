@@ -5,9 +5,8 @@ class WordModel(db.Model):
     de = db.StringProperty(required=True)
     es = db.StringProperty(required=True)
     comment = db.StringProperty(required=False)
-    quiz_nr = db.IntegerProperty
-    quiz_ok = db.IntegerProperty
-    quiz_last = db.DateProperty
+    difficulty = db.IntegerProperty    # lowest: 1, highest: 100
+    lastquiz = db.DateProperty
 
     def to_dict(self):
 	       return dict([(p, unicode(getattr(self, p))) for p in self.properties()])

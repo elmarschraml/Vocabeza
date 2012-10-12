@@ -9,7 +9,9 @@ import model_word
 class QuizResource(webapp2.RequestHandler):
 
   def get(self,location):
-      logging.info("quiz get is not yet implemented")
+      failtext = "quiz get is not yet implemented"
+      logging.info(failtext)
+      self.response.out.write(failtext)
       #TODO implement
 
 
