@@ -125,7 +125,7 @@ for inheritance, have root class inherit from PolyModel, then polymorphic querie
 db.Property can also be subclassed
 
 
-
+myentity.put() is same call to create and update
 
 
 

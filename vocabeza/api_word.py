@@ -7,7 +7,7 @@ import model_word
 
 class  WordResource(webapp2.RequestHandler):
 
-
+    
     def get(self,location):
       self.response.headers.add_header('content-type', 'application/json', charset='utf-8')
       word_id = location.lstrip('/')
@@ -36,7 +36,7 @@ class  WordResource(webapp2.RequestHandler):
             logging.info("search results: " + str(wordlist))
             retval = [w.to_dict() for w in wordlist]
 
-
+      
       elif not(word_id.isdigit()): #id is not numeric
         retval = dict(code="badinput", message="word id has to be numeric")
       else:
@@ -47,10 +47,10 @@ class  WordResource(webapp2.RequestHandler):
         else:
           retval = dict(code="notfound", message="No word found for id " + word_id)
       jsontext = json.dumps(retval)
-      self.response.out.write(jsontext)     
+      self.response.out.write(jsontext)
       #TODO if no id present, go by url param for de or es
-
       
+    
     def delete(self,location):
       self.response.headers.add_header('content-type', 'application/json', charset='utf-8')
       word_id = location.lstrip('/')
@@ -65,16 +65,43 @@ class  WordResource(webapp2.RequestHandler):
         else:
           retval = dict(code="notfound", message="no word found with id " + word_id + ", so could not delete anything")
       jsontext = json.dumps(retval)
-      self.response.out.write(jsontext)   
-
+      self.response.out.write(jsontext)
+    
     def post(self,location):
-	    logging.info("word post is not yet implemented")
+      self.response.headers.add_header('content-type', 'application/json', charset='utf-8')
+      logging.info("doing word post")
+      word_id = location.lstrip('/')
+      if len(word_id) == 0:
+        logging.error("no word id given, dont know which word to update")
+        retval = dict(code="badinput", message="word id missing, cant update anything - Please add the id of the word to update to the url, like POST /word/17")
+      elif not(word_id.isdigit()): #id is not numeric
+        retval = dict(code="badinput", message="word id has to be numeric")
+      else:
+        logging.info("looking for word with id: " + word_id)
+        found_word = model_word.WordModel.get_by_id(int(word_id))
+        if (found_word):
+          try:
+            rawrequest = self.request.body
+            payload = json.loads(rawrequest)
+            logging.info("from_request: " + str(payload))
+            #BETA avoid hardcoding word attributes - is there a way to get all declared attributes from a class?
+            word_attributes = ["version","de","es","comment"] #difficulty and lastquiy can not be set by client
+            for cur_attribute in word_attributes:
+              if cur_attribute in payload:
+                setattr(found_word,cur_attribute, payload[cur_attribute])
+                logging.debug("word was changed to: " + json.dumps(db.to_dict(found_word)) )
+                #found_word[cur_attribute] = payload[cur_attribute]
+            found_word.put()
+            retval = dict(code="ok", message="word with id " + word_id + " was updated")
+          except (ValueError, TypeError) as payloaderror:
+            logging.info(payloaderror)
+            retval = dict(code="badinput", message="could not read input as json representation of a word, input was: " + rawrequest)
+        else:
+          retval = dict(code="notfound", message="No word found for id " + word_id)
+      
+      jsontext = json.dumps(retval)
+      self.response.out.write(jsontext)
 
-	  #TODO implement
-	  #get id from url
-	  #update word
-	  #save
-	  #send confirmation json
-	
-  #TODO implement log and error message when another (unsupported) operation is called	
+  
+  #TODO implement log and error message when another (unsupported) operation is called
  

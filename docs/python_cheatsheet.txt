@@ -27,3 +27,5 @@ for value in list:
 
 
 if elem in list:
+
+if somekey in somedict:
