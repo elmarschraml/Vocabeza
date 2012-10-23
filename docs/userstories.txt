@@ -97,6 +97,7 @@ Release 1.0
 220) iphone-version
 230) android-version
 
-
+Future ideas:
+when showing a quiz, show vertical bar from bottom to top of card as indicator of progress (a la flashcards pro)
  
 

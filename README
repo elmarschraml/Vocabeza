@@ -33,6 +33,7 @@ Non-features:
 - No images, sounds, long texts or custom fields per card. No text formatting, plaintext only.
 - No more than one level of organization per language. Some kind of bucket per chapter etc is probably needed, but definitely no nested tree structure.
 - No security, except protection against accidental damage or non-serious vandalism
+- No unnecessary animations
 
 Glossary:
 Word: a single flashcard

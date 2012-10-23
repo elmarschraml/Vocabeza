@@ -5,3 +5,6 @@ for everything below working dir: git checkout HEAD
 
 push to github:
 use cygwin; dosbox does not recognize key
+
+log:
+git log -n 10
