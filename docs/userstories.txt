@@ -5,13 +5,14 @@ buch python data modelling noch fertig lesen
 /word DELETE
 /word POST   save changes to word
 /quiz PUT (save a single result)  #for offline use: check locally, store-only batch call later.
+/quiz GET   get next question to ask
 
 TODOs:
+return id with response to PUT /quiz
+/quiz/<id> GET (check an answer)       #for online use: have logic server-side
 
 GET /allwords, GET /word/<id> -> include id in return json 
 PUT /quiz must be idempotent -> check if already exists with same timestamp , update difficulty and lastquiz
-/quiz/<id> GET (check an answer)       #for online use: have logic server-side
-/quiz GET   get next question to ask
 GET /quiz?count=10   batch-get next questions
 /quiz POST (combination of GET(check) and PUT(store))
 

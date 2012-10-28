@@ -14,11 +14,19 @@ class QuizResource(webapp2.RequestHandler):
   quiz_wrong_input_message = "To PUT a new quiz, you need to supply a json body, e.g. {'version': 1, 'date': '2012-10-01 10:00:00', 'answer': 'bla', 'word': 17}"     
 
   def get(self,location):
+    nr_of_quizzes = 1
+    if "count" in self.request.params:
+      try:
+        nr_of_quizzes = int(self.request.params["count"])
+      except ValueError:
+        nr_of_quizzes = 1
     q = model_word.WordModel.all()
     wordlist = q.fetch(1000)
-    chosen_word = choice(wordlist)
-    retval = db.to_dict(chosen_word)
-    jsontext = json.dumps(retval)
+    quizlist = list()
+    for _ in range(nr_of_quizzes):
+      chosen_word = choice(wordlist)
+      quizlist.append(chosen_word)
+    jsontext = json.dumps([w.to_dict() for w in quizlist])
     self.response.out.write(jsontext)
 
 

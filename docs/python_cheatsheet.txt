@@ -29,3 +29,19 @@ for value in list:
 if elem in list:
 
 if somekey in somedict:
+
+
+select random element from list:
+from random import choice
+print choice(foo)
+
+json.dumps does not handle datetime, need to supply custom converter
+
+newlist = list()
+filledlist = [1,"bla"]
+
+parse int from string>
+try:
+  return int(s)
+except exceptions.ValueError:
+  return float(s)

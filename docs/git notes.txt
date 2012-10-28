@@ -8,3 +8,8 @@ use cygwin; dosbox does not recognize key
 
 log:
 git log -n 10
+
+view unpushed commits:
+git log @{u}..     #  #{u} means branch upstream from the current one
+generally: commit diff between branches
+git log master ^origin/master
